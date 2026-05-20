@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/logo.png" width="140">
+<img src="assets/logo.png" width="160" style="margin-bottom:-10px;">
 
 # WorldMemArena: Evaluating Multimodal Agent Memory Through Action–World Interaction
 
