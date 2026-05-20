@@ -62,9 +62,6 @@ from huggingface_hub import snapshot_download
 snapshot_download("LCZZZZ/WorldMemArena", repo_type="dataset",
                   local_dir="./WorldMemArena")
 ```
-
-> Dataset is released under **CC BY-NC 4.0**.
-
 ---
 
 ## 📊 Baselines
@@ -89,9 +86,9 @@ snapshot_download("LCZZZZ/WorldMemArena", repo_type="dataset",
 
 | # | Baseline | Agent | Default Model |
 |---|----------|-------|---------------|
-| 12 | Harness-OpenClaw-GPT | OpenClaw CLI | `gpt-5.4-nano` |
-| 13 | Harness-OpenClaw-DeepSeek | OpenClaw CLI | `deepseek-v4-flash` |
-| 14 | Harness-Codex | Codex CLI | `gpt-5.4-nano` |
+| 1 | OpenClaw-GPT | OpenClaw CLI | `gpt-5.4-nano` |
+| 2 | Harness-OpenClaw-DeepSeek | OpenClaw CLI | `deepseek-v4-flash` |
+| 3 | Harness-Codex | Codex CLI | `gpt-5.4-nano` |
 
 ### BaseModel Baselines (5)
 
@@ -99,11 +96,11 @@ Direct long-context VLM answering — no memory module, no retrieval. Useful as 
 
 | # | Baseline | Provider | Default Model |
 |---|----------|----------|---------------|
-| 15 | BaseModel-qwen | OpenRouter | `qwen/qwen3.6-plus` |
-| 16 | BaseModel-gemini | OpenRouter | `google/gemini-3-flash-preview` |
-| 17 | BaseModel-openai | OpenAI | `gpt-5.4-mini` |
-| 18 | BaseModel-deepseek | DeepSeek | `deepseek-v4-pro` |
-| 19 | BaseModel-claude | OpenRouter | `anthropic/claude-haiku-4.5` |
+| 1 | BaseModel-qwen | OpenRouter | `qwen/qwen3.6-plus` |
+| 2 | BaseModel-gemini | OpenRouter | `google/gemini-3-flash-preview` |
+| 3 | BaseModel-openai | OpenAI | `gpt-5.4-mini` |
+| 4 | BaseModel-deepseek | DeepSeek | `deepseek-v4-pro` |
+| 5 | BaseModel-claude | OpenRouter | `anthropic/claude-haiku-4.5` |
 
 ---
 
