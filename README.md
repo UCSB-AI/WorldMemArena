@@ -2,8 +2,7 @@
 
 <img src="assets/logo.png" width="140">
 
-# WorldMemArena  
-## Evaluating Multimodal Agent Memory Through Action–World Interaction
+# WorldMemArena: Evaluating Multimodal Agent Memory Through Action–World Interaction
 
 </div>
 
