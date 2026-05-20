@@ -1,4 +1,4 @@
-# <img src="assets/logo.png" width="85" align="center"> WorldMemArena: Evaluating Multimodal Agent Memory Through Action–World Interaction
+# <img src="assets/logo.png" width="90" align="center"> WorldMemArena: Evaluating Multimodal Agent Memory Through Action–World Interaction
 [![arXiv](https://img.shields.io/badge/arXiv-2026.xxxxx-b31b1b.svg)](https://arxiv.org/abs/2026.xxxxx)
 [![HuggingFace](https://img.shields.io/badge/🤗-Dataset-yellow)](https://huggingface.co/datasets/LCZZZZ/WorldMemArena)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
