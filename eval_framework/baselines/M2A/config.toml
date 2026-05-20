@@ -1,0 +1,14 @@
+[llm]
+model = "gpt-4o-mini"
+base_url = "https://api.openai.com/v1"
+api_key = ""
+
+[text_embedding]
+model = "all-MiniLM-L6-v2"
+base_url = "http://localhost:8010/v1"
+api_key = "EMPTY"
+
+[multimodal_embedding]
+model = "siglip2-base-patch16-384"
+base_url = "http://localhost:8050/v1"
+api_key = "EMPTY"

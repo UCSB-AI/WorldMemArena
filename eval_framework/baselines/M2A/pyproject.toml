@@ -1,0 +1,16 @@
+[project]
+name = "M2A"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "langchain>=1.2.6",
+    "langchain-openai>=1.1.7",
+    "langfuse>=3.12.0",
+    "milvus-lite>=2.5.1",
+    "numpy>=2.4.1",
+    "openai>=2.15.0",
+    "pymilvus[milvus-lite]>=2.6.6",
+    "scikit-learn>=1.8.0",
+    "tqdm>=4.67.3",
+    "setuptools==78.1.0"
+]

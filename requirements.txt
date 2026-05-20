@@ -1,0 +1,36 @@
+# Core framework
+openai>=1.30.0
+anthropic>=0.30.0
+pyyaml>=6.0
+tqdm>=4.60.0
+python-dotenv>=1.0.0
+json-repair>=0.20.0
+numpy>=1.24.0
+tiktoken>=0.5.0
+
+# Vector stores
+chromadb>=0.4.0           # A-Mem
+lancedb>=0.4.0            # SimpleMem
+milvus-lite>=2.4.0        # M2A
+pymilvus>=2.4.0           # M2A
+faiss-cpu>=1.7.0          # Omni-SimpleMem
+
+# Embedding & models
+sentence-transformers>=2.2.0
+torch>=2.0.0
+transformers>=4.35.0
+httpx>=0.24.0             # GME/Qwen remote embedding client
+
+# M2A auto embed sidecar
+fastapi>=0.100.0
+uvicorn>=0.22.0
+
+# Text processing
+rank-bm25>=0.2.2          # A-Mem, SimpleMem, Omni-SimpleMem
+nltk>=3.8.0               # A-Mem tokenizer
+Pillow>=9.0.0             # image handling
+
+# LangChain (SimpleMem)
+langchain>=0.1.0
+langchain-community>=0.0.10
+langchain-openai>=0.0.5

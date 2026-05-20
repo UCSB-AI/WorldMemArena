@@ -1,0 +1,136 @@
+# WorldMemArena Eval Framework — default baseline config.
+# Runtime .env/env vars can override API-facing settings such as model, URL,
+# temperature, token limit, timeout, concurrency, and API keys.
+
+# ─── OpenAI-compatible chat LLM ────────────────────────────────────────
+# Used by: cli.py (Base Model answer), judges/llm_client.py (LLM judge),
+# and every adapter that calls an OpenAI-compatible chat endpoint.
+llm:
+  temperature: 0.0
+  max_tokens: 16384                            # GPT-5 系列 reasoning model 需要更大预算 (max_completion_tokens = reasoning + output)
+  timeout: 300                                 # 单位:秒
+  max_concurrent: 10
+
+# ─── Embedding model (OpenAI-compatible) ───────────────────────────────
+# Used by: MIRIX, ViLoMem.
+# base_url 留 null 表示沿用 chat 的 base_url（OPENAI_BASE_URL env / llm.base_url）。
+# 如需独立的 embedding endpoint,设 OPENAI_EMBEDDING_BASE_URL 或在此填写。
+embedding:
+  model: "text-embedding-3-small"
+  dimensions: 1536
+  base_url: null
+
+# ─── LLM judge (evaluator) ─────────────────────────────────────────────
+# judge.model 为 null 时必须回落到 OPENAI_MODEL。
+judge:
+  model: null
+  temperature: 0.0
+  max_workers: 5                               # 并发 judge 线程数 (--max-eval-workers 的默认值)
+
+# ─── Base Model (cli.py build_default_answer_fn 的最终 VLM 回答) ─────────
+# 只控制 Base Model 回答路径,不影响任何 baseline 的 memory adapter。
+base_model:
+  mode: "image"                                # "text" 或 "image"
+  max_images_per_qa: 5
+  max_image_bytes_mb: 45                       # OpenAI 单次合并 image payload 上限 50 MB
+
+# ─── Framework-wide retrieval knobs ────────────────────────────────────
+# Applied to every baseline's retrieve() call. Affects context window fed
+# to the answer-stage VLM.
+retrieval:
+  top_k: 10                                    # runner.py 传给 adapter.retrieve(query, top_k)
+  multimodal_topk: 10                          # NGMemory / AUGUSTUSMemory / UniversalRAG 多模态检索
+  word_truncation_words: 50000                 # memengine _word_mode_truncation (FU/ST/LT/RF/GA/MG/MM/MMFU/NG/AUGUSTUS/UniversalRAG)
+  answer_model_ctx: 128000                     # token-mode truncation 上限
+  answer_model_buffer: 8000                    # system+answer reserve
+  truncation_tokenizer: "eval_framework/baselines/MMFU_Single/tokenizers/gpt2"  # 本地 token-mode truncation tokenizer
+
+# ─── Local / HuggingFace models used by specific baselines ─────────────
+# Only baselines from EXPERIMENTS_TEMPLATE.md are listed here.
+local:
+  # Set these to the local HuggingFace snapshot paths after downloading the models.
+  # Use `huggingface-cli download <model-id>` and then point here, or set the
+  # corresponding env vars (SENTENCE_ENCODER_PATH, GME_MODEL_PATH) to override.
+  sentence_encoder: "${HF_HOME:-~/.cache/huggingface}/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/<hash>"
+  gme_model_path: "${HF_HOME:-~/.cache/huggingface}/hub/models--Alibaba-NLP--gme-Qwen2-VL-2B-Instruct/snapshots/<hash>"
+
+# ─── Per-baseline method params ────────────────────────────────────────
+# 所有 baseline 专属参数在这里。`mm_mode` 只对会显式读取该开关的
+# adapter / answer-stage image gate 生效；未列出的 baseline 沿用各自代码默认。
+baselines:
+  Qwen3-VL-Embedding-8B:
+    model_id: "${HF_HOME:-~/.cache/huggingface}/hub/models--Qwen--Qwen3-VL-Embedding-8B/snapshots/<hash>"
+    batch_size: 8
+    dtype: "bfloat16"
+    multi_gpu_min_items: 4
+
+
+  # Mem-Gallery text-only baselines. Keep final answer stage text-only even
+  # when base_model.mode=image, because these backends ingest captions as text
+  # and do not route obs["image"] through a multimodal store.
+  FUMemory:
+    mm_mode: "text"
+
+  STMemory:
+    mm_mode: "text"
+
+  LTMemory:
+    mm_mode: "text"
+
+  GAMemory:
+    mm_mode: "text"
+
+  RFMemory:
+    mm_mode: "text"
+
+  # Mem-Gallery multimodal baselines. These are in registry.py's
+  # _MM_CAPABLE_BASELINES and should receive real image paths.
+  MMMemory:
+    mm_mode: "image"
+
+  MMFUMemory:
+    mm_mode: "image"
+
+  SimpleMem:
+    mm_mode: "text"                            # 单独控制 SimpleMem 内部的 text/image 路径
+
+  Omni-SimpleMem:
+    mm_mode: "image"
+    skip_clip: true                            # 跳过 CLIP 图像 embedding
+
+  M2A:
+    inner_max_tokens: 1200
+    inner_timeout: 60
+    run_chat_agent: false                         # false = use adapter's direct SemanticStore path; true = also drive upstream ChatAgent
+    retrieval_mode: "lexical"                     # "lexical" avoids Milvus Lite hybrid_search keepalive stalls; "hybrid" uses upstream search
+    snapshot_limit: 16000
+    text_embed_dim: 384                        # Milvus schema 要求,对应 all-MiniLM-L6-v2
+
+  ViLoMem:
+    streams: ["logic", "visual"]
+    embed_char_limit: 8000                     # OpenAI embedding input 字符上限
+
+  MIRIX:
+    context_window: 128000
+    mm_mode: "text"                            # image mode expects upstream file-ref objects; text mode ingests captions
+
+  MGMemory:
+    mm_mode: "text"                            # text-only baseline; do not pass obs["image"]
+
+  NGMemory:
+    mm_mode: "image"                           # multimodal baseline: ingest real images
+
+  AUGUSTUSMemory:
+    mm_mode: "image"                           # multimodal baseline: ingest real images
+
+  UniversalRAGMemory:
+    mm_mode: "image"                           # multimodal baseline: ingest real images
+
+  MMFU_Single: # long-context baseline
+    # AMA-Bench mixed-FIFO long-context baseline(非 template 基准但仍由 registry 可跑)。
+    mm_mode: "image"                           # multimodal baseline: ingest real images
+    lc_safety_buffer: 300                          # prompt 模板固定开销 token 数
+    tokens_per_image: 256                          # 每张图估算 token(Qwen 256 / GPT 576 / Gemini 576)
+    max_images: 25                                 # image-FIFO 触发阈值
+    tokenizer_path: "eval_framework/baselines/MMFU_Single/tokenizers/gpt2"  # 本地 tokenizer, 避免运行时联网
+

@@ -1,0 +1,47 @@
+# Terminal harness baselines. Each top-level key becomes Harness-<key>.
+
+openclaw_gpt:
+  name: "OpenClaw"
+  baseline: "Harness-OpenClaw-GPT"
+  kind: "openclaw_general"
+  runner: "OpenClaw_General/run_openclaw_general.py"
+  api_key: "YOUR_OPENAI_API_KEY"
+  base_url: "https://api.openai.com/v1"
+  model: "gpt-5.4-nano"
+  model_api: "openai-completions"
+  timeout: 900
+  mm_mode: "text"
+  keep_isolation: false
+  show_paths: false
+
+openclaw_deepseek:
+  name: "OpenClaw"
+  baseline: "Harness-OpenClaw-DeepSeek"
+  kind: "openclaw_general"
+  runner: "OpenClaw_General/run_openclaw_general.py"
+  api_key: "YOUR_DEEPSEEK_API_KEY"
+  base_url: "https://api.deepseek.com/v1"
+  model: "deepseek-v4-flash"
+  model_api: "openai-completions"
+  timeout: 900
+  mm_mode: "text"
+  keep_isolation: false
+  show_paths: false
+
+codex:
+  name: "Codex"
+  baseline: "Harness-Codex"
+  kind: "codex_exec"
+  runner: "codex"
+  codex_home: "~/.codex"
+  workdir: "/tmp"
+  model: "gpt-5.4-nano"
+  api_key: "YOUR_OPENAI_API_KEY"
+  base_url: "https://api.openai.com/v1"
+  timeout: 900
+  mm_mode: "image"
+  sandbox: "workspace-write"
+  approval_policy: "never"
+  ephemeral: true
+  model_context_window: 1000000
+  model_auto_compact_token_limit: 900000

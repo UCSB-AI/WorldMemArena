@@ -1,0 +1,40 @@
+# BaseModel-* answer targets.
+# Each top-level key becomes "BaseModel-<key>" in the framework.
+# Replace the api_key placeholders with your own credentials.
+# `base_url` defaults below assume each provider's official OpenAI-compatible endpoint;
+# adjust if you route requests through an internal gateway.
+
+qwen:
+  model: qwen/qwen3.6-plus
+  base_url: https://openrouter.ai/api/v1
+  api_key: YOUR_OPENROUTER_API_KEY
+  mm_mode: image
+  max_images_per_qa: 3
+  max_image_bytes_mb: 22
+  timeout: 180
+
+gemini:
+  model: google/gemini-3-flash-preview
+  base_url: https://openrouter.ai/api/v1
+  api_key: YOUR_OPENROUTER_API_KEY
+  mm_mode: image
+
+openai:
+  model: gpt-5.4-mini
+  base_url: https://api.openai.com/v1
+  api_key: YOUR_OPENAI_API_KEY
+  mm_mode: image
+
+deepseek:
+  model: deepseek-v4-pro
+  base_url: https://api.deepseek.com/v1
+  api_key: YOUR_DEEPSEEK_API_KEY
+  mm_mode: text
+
+claude:
+  model: anthropic/claude-haiku-4.5
+  base_url: https://openrouter.ai/api/v1
+  api_key: YOUR_OPENROUTER_API_KEY
+  mm_mode: image
+  max_images_per_qa: 3
+  max_image_bytes_mb: 22

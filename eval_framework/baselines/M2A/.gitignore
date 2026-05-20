@@ -1,0 +1,18 @@
+**/CLAUDE.md
+
+# Python-generated files
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+**/__pycache__
+
+# Virtual environments
+.venv
+
+**/*.db
+eval_results
+test.ipynb
+*.db.lock
+*.lock
