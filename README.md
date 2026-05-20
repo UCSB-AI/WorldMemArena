@@ -4,7 +4,7 @@
 [![HuggingFace](https://img.shields.io/badge/🤗-Dataset-yellow)](https://huggingface.co/datasets/LCZZZZ/WorldMemArena)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-
+A unified evaluation framework for benchmarking **lifelong memory** systems on the [WorldMemArena](https://huggingface.co/datasets/LCZZZZ/WorldMemArena) dataset. Supports **19 baselines** spanning retrieval-augmented memory, embedding-based memory, long-context VLMs, terminal-agent harnesses, and base-model answering paradigms.
 
 <p align="center">
   <img src="assets/fig11_01.png" alt="WorldMemArena Overview" width="90%"/>
@@ -43,12 +43,12 @@ python -m eval_framework.cli \
 
 Two evaluation splits are supported via `--split`:
 
-| Flag | Samples | Use case |
-|------|---------|----------|
-| `all` | 461 | Full benchmark (default) |
-| `small` | 150 | Balanced subset for fast iteration (~5× faster) |
+| Flag | Use case |
+|------|----------|
+| `all` | Full benchmark |
+| `small` | Balanced subset for fast iteration |
 
-**Download** ([LCZZZZ/WorldMemArena](https://huggingface.co/datasets/LCZZZZ/WorldMemArena)):
+**Download** ([WorldMemArena](https://huggingface.co/datasets/LCZZZZ/WorldMemArena)):
 
 ```bash
 huggingface-cli download LCZZZZ/WorldMemArena --repo-type dataset \
