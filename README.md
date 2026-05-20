@@ -52,7 +52,7 @@ python -m eval_framework.cli \
 ## 📦 Dataset
 
 <p align="center">
-  <img src="assets/pipline_01.png" alt="WorldMemArena pipline" width="90%"/>
+  <img src="assets/pipline_01.png" alt="WorldMemArena pipline" width="100%"/>
 </p>
 
 Two evaluation splits are supported via `--split`:
