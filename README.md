@@ -6,9 +6,13 @@
 
 </div>
 
+<div align="center">
+
 [![arXiv](https://img.shields.io/badge/arXiv-2026.xxxxx-b31b1b.svg)](https://arxiv.org/abs/2026.xxxxx)
 [![HuggingFace](https://img.shields.io/badge/🤗-Dataset-yellow)](https://huggingface.co/datasets/LCZZZZ/WorldMemArena)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+</div>
 
 A unified evaluation framework for benchmarking **lifelong memory** systems on the [WorldMemArena](https://huggingface.co/datasets/LCZZZZ/WorldMemArena) dataset. Supports **19 baselines** spanning retrieval-augmented memory, embedding-based memory, long-context VLMs, terminal-agent harnesses, and base-model answering paradigms.
 
