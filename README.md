@@ -9,6 +9,7 @@
 <div align="center">
 
 [![arXiv](https://img.shields.io/badge/arXiv-2026.xxxxx-b31b1b.svg)](https://arxiv.org/abs/2026.xxxxx)
+[![Project](https://img.shields.io/badge/Project-Website-blue.svg)](https://worldmemarena-mem.github.io/)
 [![HuggingFace](https://img.shields.io/badge/🤗-Dataset-yellow)](https://huggingface.co/datasets/LCZZZZ/WorldMemArena)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
