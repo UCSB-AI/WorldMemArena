@@ -8,7 +8,7 @@
 
 <div align="center">
 
-[![arXiv](https://img.shields.io/badge/2605.29341.svg)](http://arxiv.org/abs/2605.29341)
+[![Paper](https://img.shields.io/badge/Paper-arXiv-b31b1b.svg)](http://arxiv.org/abs/2605.29341)
 [![Project](https://img.shields.io/badge/Project-Website-blue.svg)](https://worldmemarena-mem.github.io/)
 [![HuggingFace](https://img.shields.io/badge/🤗-Dataset-yellow)](https://huggingface.co/datasets/LCZZZZ/WorldMemArena)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
